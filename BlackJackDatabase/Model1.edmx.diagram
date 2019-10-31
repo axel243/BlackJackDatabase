@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1a07328486b6499c9972071092165726" Name="Diagram1">
+        <EntityTypeShape EntityType="SpelletjesModel.Sessie" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpelletjesModel.Speler" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpelletjesModel.Spellen" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpelletjesModel.sysdiagram" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpelletjesModel.Uitslagen" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpelletjesModel.added" Width="1.5" PointX="2.75" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="SpelletjesModel.FK__Sessie__spel_id__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="SpelletjesModel.FK__Sessie__speler_i__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="SpelletjesModel.FK__Uitslagen__spele__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="SpelletjesModel.FK__Uitslagen__spel___48CFD27E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

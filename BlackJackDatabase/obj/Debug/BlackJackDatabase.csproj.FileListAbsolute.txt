@@ -1,0 +1,11 @@
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\bin\Debug\BlackJackDatabase.exe.config
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\bin\Debug\BlackJackDatabase.exe
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\bin\Debug\BlackJackDatabase.pdb
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\obj\Debug\BlackJackDatabase.csprojAssemblyReference.cache
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\obj\Debug\BlackJackDatabase.exe
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\obj\Debug\BlackJackDatabase.pdb
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\bin\Debug\EntityFramework.dll
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\bin\Debug\EntityFramework.xml
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Axel\source\repos\BlackJackDatabase\BlackJackDatabase\obj\Debug\BlackJackDatabase.csproj.CopyComplete

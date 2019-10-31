@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SpelletjesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Sessie">
+    <Key>
+      <PropertyRef Name="sessie_id" />
+    </Key>
+    <Property Name="sessie_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="speler_id" Type="Int32" />
+    <Property Name="spel_id" Type="Int32" />
+    <Property Name="staat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="isActief" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Spellen" Relationship="Self.FK__Sessie__spel_id__4CA06362" FromRole="Sessie" ToRole="Spellen" />
+    <NavigationProperty Name="Speler" Relationship="Self.FK__Sessie__speler_i__4BAC3F29" FromRole="Sessie" ToRole="Speler" />
+  </EntityType>
+  <EntityType Name="Speler">
+    <Key>
+      <PropertyRef Name="speler_id" />
+    </Key>
+    <Property Name="speler_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Sessies" Relationship="Self.FK__Sessie__speler_i__4BAC3F29" FromRole="Speler" ToRole="Sessie" />
+    <NavigationProperty Name="Uitslagens" Relationship="Self.FK__Uitslagen__spele__47DBAE45" FromRole="Speler" ToRole="Uitslagen" />
+  </EntityType>
+  <EntityType Name="Spellen">
+    <Key>
+      <PropertyRef Name="spel_id" />
+    </Key>
+    <Property Name="spel_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="spel_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Sessies" Relationship="Self.FK__Sessie__spel_id__4CA06362" FromRole="Spellen" ToRole="Sessie" />
+    <NavigationProperty Name="Uitslagens" Relationship="Self.FK__Uitslagen__spel___48CFD27E" FromRole="Spellen" ToRole="Uitslagen" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Uitslagen">
+    <Key>
+      <PropertyRef Name="uitslag_id" />
+    </Key>
+    <Property Name="uitslag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="speler_id" Type="Int32" />
+    <Property Name="spel_id" Type="Int32" />
+    <Property Name="uitslag" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Speler" Relationship="Self.FK__Uitslagen__spele__47DBAE45" FromRole="Uitslagen" ToRole="Speler" />
+    <NavigationProperty Name="Spellen" Relationship="Self.FK__Uitslagen__spel___48CFD27E" FromRole="Uitslagen" ToRole="Spellen" />
+  </EntityType>
+  <EntityType Name="added">
+    <Key>
+      <PropertyRef Name="speler_id" />
+    </Key>
+    <Property Name="speler_id" Type="Int32" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="last_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__Sessie__spel_id__4CA06362">
+    <End Role="Spellen" Type="Self.Spellen" Multiplicity="0..1" />
+    <End Role="Sessie" Type="Self.Sessie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spellen">
+        <PropertyRef Name="spel_id" />
+      </Principal>
+      <Dependent Role="Sessie">
+        <PropertyRef Name="spel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sessie__speler_i__4BAC3F29">
+    <End Role="Speler" Type="Self.Speler" Multiplicity="0..1" />
+    <End Role="Sessie" Type="Self.Sessie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speler">
+        <PropertyRef Name="speler_id" />
+      </Principal>
+      <Dependent Role="Sessie">
+        <PropertyRef Name="speler_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Uitslagen__spele__47DBAE45">
+    <End Role="Speler" Type="Self.Speler" Multiplicity="0..1" />
+    <End Role="Uitslagen" Type="Self.Uitslagen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speler">
+        <PropertyRef Name="speler_id" />
+      </Principal>
+      <Dependent Role="Uitslagen">
+        <PropertyRef Name="speler_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Uitslagen__spel___48CFD27E">
+    <End Role="Spellen" Type="Self.Spellen" Multiplicity="0..1" />
+    <End Role="Uitslagen" Type="Self.Uitslagen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spellen">
+        <PropertyRef Name="spel_id" />
+      </Principal>
+      <Dependent Role="Uitslagen">
+        <PropertyRef Name="spel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SpelletjesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Sessies" EntityType="Self.Sessie" />
+    <EntitySet Name="Spelers" EntityType="Self.Speler" />
+    <EntitySet Name="Spellens" EntityType="Self.Spellen" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Uitslagens" EntityType="Self.Uitslagen" />
+    <EntitySet Name="addeds" EntityType="Self.added" />
+    <AssociationSet Name="FK__Sessie__spel_id__4CA06362" Association="Self.FK__Sessie__spel_id__4CA06362">
+      <End Role="Spellen" EntitySet="Spellens" />
+      <End Role="Sessie" EntitySet="Sessies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sessie__speler_i__4BAC3F29" Association="Self.FK__Sessie__speler_i__4BAC3F29">
+      <End Role="Speler" EntitySet="Spelers" />
+      <End Role="Sessie" EntitySet="Sessies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Uitslagen__spele__47DBAE45" Association="Self.FK__Uitslagen__spele__47DBAE45">
+      <End Role="Speler" EntitySet="Spelers" />
+      <End Role="Uitslagen" EntitySet="Uitslagens" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Uitslagen__spel___48CFD27E" Association="Self.FK__Uitslagen__spel___48CFD27E">
+      <End Role="Spellen" EntitySet="Spellens" />
+      <End Role="Uitslagen" EntitySet="Uitslagens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SpelletjesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Sessie">
+    <Key>
+      <PropertyRef Name="sessie_id" />
+    </Key>
+    <Property Name="sessie_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="speler_id" Type="int" />
+    <Property Name="spel_id" Type="int" />
+    <Property Name="staat" Type="varchar(max)" />
+    <Property Name="isActief" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Speler">
+    <Key>
+      <PropertyRef Name="speler_id" />
+    </Key>
+    <Property Name="speler_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="100" />
+    <Property Name="last_name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Spellen">
+    <Key>
+      <PropertyRef Name="spel_id" />
+    </Key>
+    <Property Name="spel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="spel_name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Uitslagen">
+    <Key>
+      <PropertyRef Name="uitslag_id" />
+    </Key>
+    <Property Name="uitslag_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="speler_id" Type="int" />
+    <Property Name="spel_id" Type="int" />
+    <Property Name="uitslag" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="added">
+    <Key>
+      <PropertyRef Name="speler_id" />
+    </Key>
+    <Property Name="speler_id" Type="int" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="200" />
+    <Property Name="last_name" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK__Sessie__spel_id__4CA06362">
+    <End Role="Spellen" Type="Self.Spellen" Multiplicity="0..1" />
+    <End Role="Sessie" Type="Self.Sessie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spellen">
+        <PropertyRef Name="spel_id" />
+      </Principal>
+      <Dependent Role="Sessie">
+        <PropertyRef Name="spel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sessie__speler_i__4BAC3F29">
+    <End Role="Speler" Type="Self.Speler" Multiplicity="0..1" />
+    <End Role="Sessie" Type="Self.Sessie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speler">
+        <PropertyRef Name="speler_id" />
+      </Principal>
+      <Dependent Role="Sessie">
+        <PropertyRef Name="speler_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Uitslagen__spel___48CFD27E">
+    <End Role="Spellen" Type="Self.Spellen" Multiplicity="0..1" />
+    <End Role="Uitslagen" Type="Self.Uitslagen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spellen">
+        <PropertyRef Name="spel_id" />
+      </Principal>
+      <Dependent Role="Uitslagen">
+        <PropertyRef Name="spel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Uitslagen__spele__47DBAE45">
+    <End Role="Speler" Type="Self.Speler" Multiplicity="0..1" />
+    <End Role="Uitslagen" Type="Self.Uitslagen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speler">
+        <PropertyRef Name="speler_id" />
+      </Principal>
+      <Dependent Role="Uitslagen">
+        <PropertyRef Name="speler_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SpelletjesModelStoreContainer">
+    <EntitySet Name="Sessie" EntityType="Self.Sessie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Speler" EntityType="Self.Speler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Spellen" EntityType="Self.Spellen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uitslagen" EntityType="Self.Uitslagen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="added" EntityType="Self.added" Schema="Speler" store:Type="Tables" />
+    <AssociationSet Name="FK__Sessie__spel_id__4CA06362" Association="Self.FK__Sessie__spel_id__4CA06362">
+      <End Role="Spellen" EntitySet="Spellen" />
+      <End Role="Sessie" EntitySet="Sessie" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sessie__speler_i__4BAC3F29" Association="Self.FK__Sessie__speler_i__4BAC3F29">
+      <End Role="Speler" EntitySet="Speler" />
+      <End Role="Sessie" EntitySet="Sessie" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Uitslagen__spel___48CFD27E" Association="Self.FK__Uitslagen__spel___48CFD27E">
+      <End Role="Spellen" EntitySet="Spellen" />
+      <End Role="Uitslagen" EntitySet="Uitslagen" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Uitslagen__spele__47DBAE45" Association="Self.FK__Uitslagen__spele__47DBAE45">
+      <End Role="Speler" EntitySet="Speler" />
+      <End Role="Uitslagen" EntitySet="Uitslagen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
